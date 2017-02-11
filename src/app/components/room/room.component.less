@@ -1,0 +1,268 @@
+    .p-room-container {
+        margin: 0 -15px;
+        .navbar.navbar-default,
+        .navbar-default {
+            min-height: 0;
+            margin-bottom: 0;
+        }
+        .navbar-header {
+            width: 100%;
+            padding-top: 5px;
+            padding-right: 30px;
+            .p-nav-control,
+            .p-nav-btn {
+                float: right;
+                margin: 0 5px;
+            }
+            .p-nav-control {
+                margin-top: 5px;
+                color: #666;
+            }
+            .p-title-container {
+                max-width: 280px;
+                display: inline-block;
+                color: #666;
+                .p-nav-title-editing-container {
+                    display: inline-block;
+                    .p-title-input {
+                        margin-left: 10px;
+                        margin-right: 5px;
+                        margin-bottom: 5px;
+                        max-width: 200px;
+                        padding: 5px 5px;
+                    }
+                    .p-edit-button {
+                        float: right;
+                    }
+                }
+                .p-nav-title {
+                    display: inline-block;
+                    margin: 5px 5px;
+                    padding: 0 5px;
+                    white-space: nowrap;
+                    overflow-x: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 200px;
+                }
+            }
+            .p-room-reveal {
+                color: #ad2d2d;
+                &.p-revealed {
+                    color: #5fb760
+                }
+            }
+            .p-room-locked {
+                color: #ad2d2d;
+            }
+            .p-room-unlocked {
+                color: #5fb760
+            }
+            .p-room-freeze {
+                color: #2c7db0;
+            }
+        }
+        button {
+            outline: none;
+        }
+    }
+    
+    .p-gamearea {
+        margin-top: 30px;
+        .p-timer {
+            float: right;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background: #666;
+            color: #fff;
+            padding: 5px;
+        }
+        .p-point-list {
+            list-style-type: none;
+            transition: all 0.5s ease;
+            .p-point-list-item {
+                display: inline-block;
+                height: 40px;
+                width: 35px;
+                background: #ccc;
+                padding: 5px;
+                font-size: 20px;
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+                margin: 5px;
+                user-select: none;
+                &:hover {
+                    background: #666;
+                }
+                &.p-selected {
+                    background: #D97F30;
+                }
+            }
+        }
+        .p-user-list {
+            list-style: none;
+            color: #666;
+            font-size: 20px;
+            .p-user {
+                margin: 10px;
+                transition: all 0.5s ease;
+                .p-room-username-container {
+                    width: 300px;
+                    .p-room-avatar {
+                        width: 100px;
+                        height: 100px;
+                        padding: 5px;
+                        border: 1px solid #999;
+                        border-radius: 10px;
+                    }
+                    .p-room-username {
+                        display: inline-block
+                    }
+                    .p-btn-remove-user {
+                        width: 10px;
+                        height: 20px;
+                        display: none;
+                        padding: 0px 10px;
+                        margin-top: -5px;
+                        .p-remove-icon {
+                            margin-top: -3px;
+                            margin-left: -5px;
+                        }
+                    }
+                    .p-user-points {
+                        display: none;
+                        height: 30px;
+                        width: 25px;
+                        background: #a9a9a9;
+                        padding: 5px;
+                        font-size: 14px;
+                        color: #fff;
+                        text-align: center;
+                        cursor: pointer;
+                        margin: 0;
+                        position: absolute;
+                        margin-left: -40px;
+                        &.p-has-points {
+                            display: inline-block;
+                        }
+                        &.p-has-new-points {
+                            animation: points-animation 1000ms linear both;
+                        }
+                    }
+                    &:hover {
+                        .p-btn-remove-user {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+            .p-owner {
+                margin: 10px;
+                .p-user-points {
+                    display: none;
+                    height: 30px;
+                    width: 25px;
+                    background: #a9a9a9;
+                    padding: 5px;
+                    font-size: 14px;
+                    color: #fff;
+                    text-align: center;
+                    cursor: pointer;
+                    margin: 0;
+                    position: absolute;
+                    margin-left: -40px;
+                    &.p-has-points {
+                        display: inline-block;
+                    }
+                    &.p-has-new-points {
+                        animation: points-animation 1000ms linear both;
+                    }
+                }
+                .p-room-ownername {
+                    display: inline-block;
+                }
+                &.enter {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    /* Wobble Vertical */
+    
+    @keyframes wobble-vertical {
+        16.65% {
+            transform: translateY(6px);
+        }
+        33.3% {
+            transform: translateY(-4px);
+        }
+        49.95% {
+            transform: translateY(3px);
+        }
+        66.6% {
+            transform: translateY(-2px);
+        }
+        83.25% {
+            transform: translateY(1px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    .wobble-vertical {
+        display: inline-block;
+        vertical-align: middle;
+        &:hover,
+        &:focus,
+        &:active {
+            animation-name: wobble-vertical;
+            animation-duration: 500ms;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: 1;
+        }
+    }
+    /* Generated with Bounce.js. Edit at https://goo.gl/bW9BQJ */
+    
+    @keyframes points-animation {
+        0% {
+            -webkit-transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        4.3% {
+            -webkit-transform: matrix3d(0.514, 0, 0, 0, 0, 0.514, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(0.514, 0, 0, 0, 0, 0.514, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        8.61% {
+            -webkit-transform: matrix3d(0.879, 0, 0, 0, 0, 0.879, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(0.879, 0, 0, 0, 0, 0.879, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        12.91% {
+            -webkit-transform: matrix3d(1.052, 0, 0, 0, 0, 1.052, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1.052, 0, 0, 0, 0, 1.052, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        17.22% {
+            -webkit-transform: matrix3d(1.093, 0, 0, 0, 0, 1.093, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1.093, 0, 0, 0, 0, 1.093, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        28.33% {
+            -webkit-transform: matrix3d(1.021, 0, 0, 0, 0, 1.021, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1.021, 0, 0, 0, 0, 1.021, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        39.44% {
+            -webkit-transform: matrix3d(0.994, 0, 0, 0, 0, 0.994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(0.994, 0, 0, 0, 0, 0.994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        61.66% {
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        83.98% {
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+        100% {
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+    }

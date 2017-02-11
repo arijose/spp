@@ -1,0 +1,31 @@
+<!-- Create user panel -->
+<div class="container">
+
+  <div class="panel panel-default p-create-user-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">Join Room</h3>
+    </div>
+    <div class="panel-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control p-create-user-input" [(ngModel)]="user.name" (keyup.enter)="createUser()" name="userName"
+                placeholder="Your name" required>
+            </div>
+
+          </div>
+          <!--<div class="col-sm-12">
+                        <avatar></avatar>
+                    </div>-->
+
+          <div class="col-sm-12">
+            <button type="button" (click)="createUser()" class="btn btn-default p-create-user-btn" [disabled]="!user.name">
+                    <span>Enter Room</span>
+                </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
