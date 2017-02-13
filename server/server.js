@@ -108,8 +108,8 @@ io.on('connection', (socket) => {
         freezeRoom(frozen);
     });
 
-    socket.on('edit-name', (userRoom) => {
-        editName(userRoom);
+    socket.on('edit-name', (room) => {
+        editName(room);
     });
 
     socket.on('set-points', (user) => {
