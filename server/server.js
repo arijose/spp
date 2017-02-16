@@ -139,6 +139,10 @@ io.on('connection', (socket) => {
     socket.on('reset-points', (room) => {
         resetPoints(room);
     });
+
+    socket.on('emoji-updated', (user) => {
+        updateEmoji(user);
+    });
 });
 
 function joinRoom(id) {
@@ -170,7 +174,7 @@ function pauseTimer(timerRoom) {
 
     if (room) {
         io.in(room.id).emit('update-pause-timer', { room: room });
-    }
+    } k
 }
 
 function unpauseTimer(timerRoom) {
@@ -294,16 +298,35 @@ function kickUser(user) {
     }
 }
 
+function updateEmoji(emojiUser) {
+    let room = findRoom(emojiUser.roomId);
+
+    if (room) {
+
+        let roomUser = _.filter(room.users, (user) => {
+            return user.id === emojiUser.id;
+        })[0];
+
+        if (roomUser) {
+            roomUser.emoji = emojiUser.emoji;
+        }
+
+        io.in(room.id).emit('update-emoji', { user: roomUser });
+    }
+}
+
 function updatePlayer(player) {
     let room = findRoom(player.roomId);
 
     if (room) {
 
-        _.each(room.users, (user) => {
-            if (user.id === player.id) {
-                user.isPlayer = player.isPlayer;
-            }
-        });
+        let user = _.filter(room.users, (user) => {
+            return user.id === player.id;
+        })[0];
+
+        if (user) {
+            user.isPlayer = player.isPlayer;
+        }
 
         io.in(room.id).emit('update-room', { room: room });
     }
@@ -348,7 +371,8 @@ function createUser(user) {
         roomId: user.roomId,
         points: null,
         hasNewPoints: true,
-        isPlayer: true
+        isPlayer: true,
+        emoji: ''
     };
 }
 

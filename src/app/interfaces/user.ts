@@ -12,4 +12,5 @@ export interface IUser {
     points?: string;
     hasNewPoints?: boolean;
     isPlayer?: boolean;
+    emoji?: string;
 }

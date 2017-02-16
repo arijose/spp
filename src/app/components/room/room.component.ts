@@ -50,6 +50,7 @@ export class RoomComponent implements OnInit {
   private pauseTimerSubscription: Subscription;
   private unpauseTimerSubscription: Subscription;
   private timerSubscription: Subscription;
+  private updateEmojiSubscription: Subscription;
 
   private url = 'http://localhost:3000';
   private socket: any;
@@ -100,6 +101,7 @@ export class RoomComponent implements OnInit {
     this.stopTimerSubscription = this.socketService.stopTimer().subscribe(() => this.onStopTimer());
     this.pauseTimerSubscription = this.socketService.pauseTimer().subscribe(() => this.onPauseTimer());
     this.unpauseTimerSubscription = this.socketService.unpauseTimer().subscribe(() => this.onUnpauseTimer());
+    this.updateEmojiSubscription = this.socketService.emojiUpdated().subscribe((res) => this.updateEmoji(res));
 
     this.timerSubscription = this.eventService.timerObserverable.subscribe(time => this.updateTime(time));
 
@@ -122,6 +124,7 @@ export class RoomComponent implements OnInit {
     this.stopTimerSubscription.unsubscribe();
     this.pauseTimerSubscription.unsubscribe();
     this.unpauseTimerSubscription.unsubscribe();
+    this.updateEmojiSubscription.unsubscribe();
   }
 
   onStartTimer(): void {
@@ -218,6 +221,14 @@ export class RoomComponent implements OnInit {
     if (user.id !== this.userId) {
       this.socketService.kickUser(user);
     }
+  }
+
+  private updateEmoji(res: any): void {
+    let emojiUser: IUser = _.filter(this.room.users, (roomUser) => {
+      return roomUser.id === res.user.id;
+    })[0];
+
+    emojiUser.emoji = res.user.emoji;
   }
 
   private updateTime(time: string): void {

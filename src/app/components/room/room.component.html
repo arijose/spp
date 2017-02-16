@@ -52,47 +52,42 @@
         <button class="btn btn-default p-nav-btn" title="Set/Reset session" *ngIf="user?.isOwner" (click)="onResetRoom()">
                     <i class="fa fa-repeat p-room-reset"  aria-hidden="true"></i></button>
 
+        <app-emote></app-emote>
 
       </div>
     </div>
   </nav>
 </div>
 <div class="container p-gamearea">
+  <div class="col-xs-6"></div>
   <div class="col-xs-6">
-    <!--<app-emote></app-emote>-->
-  </div>
-  <div class="col-xs-6">
-    <div class="p-timer">{{time}}</div>
+    <!--<i _ngcontent-ilx-4="" class="sprite sprite-1f553 p-sprite "></i>-->
+    <span class="p-timer">{{time}}</span>
   </div>
   <div class="col-xs-6">
     <ul class="p-user-list">
       <li *ngFor="let user of users" class="p-user">
-        <div class="p-room-username-container">
-          <button *ngIf="user?.isOwner" class="btn btn-default p-btn-remove-user" (click)="onKickUser(user)">
-            <i class="fa fa-times p-remove-icon" aria-hidden="true"></i>
-          </button>
-
-          <div class="p-user-points" [class.p-has-points]="user?.points && user?.isPlayer" [class.p-has-new-points]="user?.hasNewPoints">
-            <span *ngIf="room?.reveal">{{user?.points}}</span>
-          </div>
-
-          <i *ngIf="user?.isPlayer" title="Player is playing" class="fa fa-user" aria-hidden="true"></i>
-          <i *ngIf="!user?.isPlayer" title="Player is observing" class="fa fa-user-o" aria-hidden="true"></i>
-
-          <div class="p-room-username" [innerHtml]="user?.name"></div>
-        </div>
+        <app-user [user]="user" [room]="room"></app-user>
       </li>
       <li *ngIf="!users.length" class="p-user">Waiting on players...</li>
       <li class="p-owner">
         <hr/>
+        <app-user [user]="owner" [room]="room"></app-user>
+        <!--<div class="p-player-container">
 
-        <div *ngIf="owner?.isPlayer" class="p-user-points" [class.p-has-points]="owner?.points && owner?.isPlayer" [class.p-has-new-points]="owner?.hasNewPoints">
-          <span *ngIf="room?.reveal">{{owner?.points}}</span>
-        </div>
+            <div *ngIf="owner?.isPlayer && !room?.reveal" class="p-user-points" [class.p-has-points]="owner?.points && owner?.isPlayer"
+            [class.p-has-new-points]="owner?.hasNewPoints"></div>
 
-        <i *ngIf="owner?.isPlayer" title="Room owner is player" class="fa fa-user" aria-hidden="true"></i>
-        <i *ngIf="!owner?.isPlayer" title="Room owner is observing" class="fa fa-user-o" aria-hidden="true"></i>
-        <div class="p-room-ownername" [innerHtml]="owner?.name"></div>
+            <div *ngIf="owner?.isPlayer && room?.reveal" class="p-user-points-revealed" [class.p-has-points]="owner?.points && owner?.isPlayer"
+            [class.p-has-new-points]="owner?.hasNewPoints"><span>{{owner?.points}}</span></div>
+
+            <i *ngIf="owner?.emoji!=''" class="sprite p-sprite" [ngClass]="owner?.emoji"></i>
+
+            <i *ngIf="owner?.isPlayer" title="Room owner is player" class="fa fa-user" aria-hidden="true"></i>
+            <i *ngIf="!owner?.isPlayer" title="Room owner is observing" class="fa fa-user-o" aria-hidden="true"></i>
+
+            <div class="p-room-username" [innerHtml]="owner?.name"></div>
+          </div>-->
       </li>
     </ul>
   </div>
@@ -101,4 +96,8 @@
       <li *ngFor="let card of fibonacci" class="p-point-list-item wobble-vertical" [class.p-selected]="card?.selected" (click)="onSelectedFibonacci(card)">{{card.points}}</li>
     </ul>
   </div>
+
+  <!--<i class="sprite sprite-1f553 p-sprite " (click)="onEmojiSelected($event) "></i>-->
+  <!--<i class="sprite sprite-1f5e8 p-sprite " (click)="onEmojiSelected($event) "></i>
+<i class="sprite sprite-270b p-sprite " (click)="onEmojiSelected($event) "></i>-->
 </div>

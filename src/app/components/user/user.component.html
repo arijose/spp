@@ -1,0 +1,19 @@
+<div class="p-room-username-container">
+  <!--<button *ngIf="user?.isOwner" class="btn btn-default p-btn-remove-user" (click)="onKickUser(user)">
+            <i class="fa fa-times p-remove-icon" aria-hidden="true"></i>
+          </button>-->
+  <div class="p-player-container">
+    <div *ngIf="user.isPlayer && !room.reveal" class="p-user-points" [class.p-has-points]="user?.points && user?.isPlayer" [class.p-has-new-points]="user?.hasNewPoints"></div>
+
+    <div *ngIf="user?.isPlayer && room?.reveal" class="p-user-points-revealed" [class.p-has-points]="user?.points && user?.isPlayer"
+      [class.p-has-new-points]="user?.hasNewPoints">
+      <span>{{user?.points}}</span>
+  </div>
+
+  <i *ngIf="user?.emoji!=''" class="sprite p-sprite" [ngClass]="user?.emoji"></i>
+
+  <i *ngIf="user?.isPlayer" title="Player is playing" class="fa fa-user" aria-hidden="true"></i>
+  <i *ngIf="!user?.isPlayer" title="Player is observing" class="fa fa-user-o" aria-hidden="true"></i>
+
+  <div class="p-room-username" [innerHtml]="user?.name"></div>
+</div>

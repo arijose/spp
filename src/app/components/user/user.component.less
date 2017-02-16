@@ -1,0 +1,70 @@
+.p-user {
+    margin: 10px;
+    transition: all 0.5s ease;
+    .p-room-username-container {
+        width: 300px;
+        .p-room-avatar {
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            border: 1px solid #999;
+            border-radius: 10px;
+        }
+        .p-player-container {
+            .p-user-points {
+                display: none;
+                background-image: url('../assets/spritesheet.png');
+                background-position: 0 0;
+                height: 32px;
+                width: 32px;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+                margin: 0;
+                position: absolute;
+                margin-left: -40px;
+                margin-top: -5px;
+                &.p-has-points {
+                    display: inline-block;
+                }
+                &.p-has-new-points {
+                    animation: points-animation 1000ms linear both;
+                }
+            }
+            .p-user-points-revealed {
+                display: inline-block;
+                background-image: url('../assets/spritesheet.png');
+                background-position: 0 -224px;
+                height: 32px;
+                width: 32px;
+            }
+            .p-room-username {
+                display: inline-block;
+            }
+            .p-sprite {
+                height: 32px;
+                width: 32px;
+                margin-top: -4px;
+                transform: scale(0.8);
+                float: left;
+            }
+        }
+        .p-btn-remove-user {
+            width: 10px;
+            height: 20px;
+            display: none;
+            padding: 0px 10px;
+            margin-top: -5px;
+            .p-remove-icon {
+                margin-top: -3px;
+                margin-left: -5px;
+            }
+        }
+        &:hover {
+            .p-btn-remove-user {
+                display: inline-block;
+            }
+        }
+    }
+}
