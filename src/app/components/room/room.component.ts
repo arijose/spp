@@ -217,7 +217,7 @@ export class RoomComponent implements OnInit {
     this.socketService.kickUser(this.user);
   }
 
-  onKickUser(user: IUser): void {
+  onKickedUser(user: IUser): void {
     if (user.id !== this.userId) {
       this.socketService.kickUser(user);
     }
