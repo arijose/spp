@@ -29,9 +29,10 @@ import { SocketService, UserService, EventService } from './services/index';
  *******************************/
 
 @Component({
-  selector: 'app',
+  selector: 'app-root',
   providers: [AppConfiguration],
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less']
 })
 
 /********************************
@@ -54,7 +55,7 @@ export class AppComponent {
     private eventService: EventService) { }
 
   @HostListener('window:beforeunload', ['$event']) unloadHandler(event) {
-    let user: IUser = this.userService.getUser();
+    const user: IUser = this.userService.getUser();
 
     if (user && user.id) {
       // this.socketService.removeUser(this.userService.getUser());

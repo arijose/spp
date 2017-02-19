@@ -52,6 +52,7 @@
         <button class="btn btn-default p-nav-btn" title="Set/Reset session" *ngIf="user?.isOwner" (click)="onResetRoom()">
                     <i class="fa fa-repeat p-room-reset"  aria-hidden="true"></i></button>
 
+        <!-- Emoticons button -->
         <app-emote></app-emote>
 
       </div>
@@ -70,24 +71,9 @@
         <app-user [user]="user" [room]="room"></app-user>
       </li>
       <li *ngIf="!users.length" class="p-user">Waiting on players...</li>
-      <li class="p-owner">
+      <li class="p-user">
         <hr/>
         <app-user [user]="owner" [room]="room"></app-user>
-        <!--<div class="p-player-container">
-
-            <div *ngIf="owner?.isPlayer && !room?.reveal" class="p-user-points" [class.p-has-points]="owner?.points && owner?.isPlayer"
-            [class.p-has-new-points]="owner?.hasNewPoints"></div>
-
-            <div *ngIf="owner?.isPlayer && room?.reveal" class="p-user-points-revealed" [class.p-has-points]="owner?.points && owner?.isPlayer"
-            [class.p-has-new-points]="owner?.hasNewPoints"><span>{{owner?.points}}</span></div>
-
-            <i *ngIf="owner?.emoji!=''" class="sprite p-sprite" [ngClass]="owner?.emoji"></i>
-
-            <i *ngIf="owner?.isPlayer" title="Room owner is player" class="fa fa-user" aria-hidden="true"></i>
-            <i *ngIf="!owner?.isPlayer" title="Room owner is observing" class="fa fa-user-o" aria-hidden="true"></i>
-
-            <div class="p-room-username" [innerHtml]="owner?.name"></div>
-          </div>-->
       </li>
     </ul>
   </div>

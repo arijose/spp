@@ -229,6 +229,12 @@ export class RoomComponent implements OnInit {
     })[0];
 
     emojiUser.emoji = res.user.emoji;
+
+    emojiUser.hasNewEmoji = emojiUser.emoji !== '' ? true : false;
+
+    setTimeout(() => {
+      emojiUser.hasNewEmoji = false;
+    }, 5000);
   }
 
   private updateTime(time: string): void {
@@ -238,7 +244,7 @@ export class RoomComponent implements OnInit {
   private setupUserRoom(roomId: string): void {
     this.socket = io.connect(this.url);
     // Set user data
-    let user: IUser = JSON.parse(localStorage.getItem('poker-user'));
+    const user: IUser = JSON.parse(localStorage.getItem('poker-user'));
 
     // If room ids match, and there is a user object
     if (user && (user.roomId === this.roomId)) {
@@ -251,8 +257,6 @@ export class RoomComponent implements OnInit {
 
       // Go to room when user has joined
       this.socketService.roomJoined().subscribe(() => {
-        let user: IUser = this.userService.getUser();
-
         this.socketService.getRoom(this.roomId);
       });
 

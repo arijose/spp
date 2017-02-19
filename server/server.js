@@ -372,7 +372,8 @@ function createUser(user) {
         points: null,
         hasNewPoints: true,
         isPlayer: true,
-        emoji: ''
+        emoji: '',
+        hasNewEmoji: false
     };
 }
 

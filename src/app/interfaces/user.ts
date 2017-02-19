@@ -13,4 +13,5 @@ export interface IUser {
     hasNewPoints?: boolean;
     isPlayer?: boolean;
     emoji?: string;
+    hasNewEmoji?: boolean;
 }

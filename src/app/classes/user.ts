@@ -16,4 +16,5 @@ export class User implements IUser {
     public hasNewPoints: boolean = true;
     public isPlayer: boolean = true;
     public emoji: string = '';
+    public hasNewEmoji: boolean = false;
 }

@@ -1,70 +1,152 @@
-.p-user {
-    margin: 10px;
-    transition: all 0.5s ease;
-    .p-room-username-container {
-        width: 300px;
-        .p-room-avatar {
-            width: 100px;
-            height: 100px;
-            padding: 5px;
-            border: 1px solid #999;
-            border-radius: 10px;
+.p-player-container {
+    width: 300px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    .p-user-name,
+    .p-user-points,
+    .p-user-emoji,
+    .p-user-state,
+    .p-user-sprite {
+        padding: 5px;
+    }
+    .p-user-points {
+        display: none;
+        background-image: url('../../../assets/spritesheet.png');
+        background-position: 0 0;
+        height: 32px;
+        width: 32px;
+        position: absolute;
+        right: 0;
+        &.p-has-points {
+            display: inline-block;
+            animation: points-animation 1s linear both;
         }
-        .p-player-container {
-            .p-user-points {
-                display: none;
-                background-image: url('../assets/spritesheet.png');
-                background-position: 0 0;
-                height: 32px;
-                width: 32px;
-                font-size: 14px;
-                color: #fff;
-                text-align: center;
-                cursor: pointer;
-                margin: 0;
-                position: absolute;
-                margin-left: -40px;
-                margin-top: -5px;
-                &.p-has-points {
-                    display: inline-block;
-                }
-                &.p-has-new-points {
-                    animation: points-animation 1000ms linear both;
-                }
-            }
-            .p-user-points-revealed {
-                display: inline-block;
-                background-image: url('../assets/spritesheet.png');
-                background-position: 0 -224px;
-                height: 32px;
-                width: 32px;
-            }
-            .p-room-username {
-                display: inline-block;
-            }
-            .p-sprite {
-                height: 32px;
-                width: 32px;
-                margin-top: -4px;
-                transform: scale(0.8);
-                float: left;
-            }
+    }
+    .p-user-points-revealed {
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        background: #efeded;
+        border-radius: 100%;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        font-size: 16px;
+        padding: 5px;
+        animation: points-animation 1s linear both;
+    }
+    .p-sprite {
+        height: 32px;
+        width: 32px;
+        margin-top: -2px;
+        transform: scale(0.8);
+    }
+    .p-user-emoji {
+        display: inline-block;
+        position: absolute;
+        padding: 2px;
+        width: 35px;
+        height: 32px;
+        background-color: #efeded;
+        margin-left: -46px;
+        margin-top: 8px;
+        opacity: 0;
+        &.p-user-emoji-hidden {
+            opacity: 0;
         }
-        .p-btn-remove-user {
-            width: 10px;
-            height: 20px;
-            display: none;
-            padding: 0px 10px;
-            margin-top: -5px;
-            .p-remove-icon {
-                margin-top: -3px;
-                margin-left: -5px;
-            }
+        &.p-has-emoji {
+            animation: points-animation 1s linear both;
         }
-        &:hover {
-            .p-btn-remove-user {
-                display: inline-block;
-            }
+        &.p-has-new-emoji {
+            animation: emoji-animation 5s linear both;
         }
+    }
+    .tri-right.right-in:after {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -12px;
+        top: 9px;
+        bottom: auto;
+        border: 7px solid;
+        border-color: #efeded transparent transparent #efeded;
+    }
+}
+
+.p-btn-remove-user {
+    width: 10px;
+    height: 20px;
+    display: none;
+    padding: 0px 10px;
+    margin-top: -5px;
+    .p-remove-icon {
+        margin-top: -3px;
+        margin-left: -5px;
+    }
+}
+
+&:hover {
+    .p-btn-remove-user {
+        display: inline-block;
+    }
+}
+
+@keyframes emoji-animation {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.8;
+        transition: opacity;
+    }
+    100% {
+        transition: opacity;
+        opacity: 0;
+    }
+}
+
+@keyframes points-animation {
+    0% {
+        -webkit-transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    4.3% {
+        -webkit-transform: matrix3d(0.514, 0, 0, 0, 0, 0.514, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(0.514, 0, 0, 0, 0, 0.514, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    8.61% {
+        -webkit-transform: matrix3d(0.879, 0, 0, 0, 0, 0.879, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(0.879, 0, 0, 0, 0, 0.879, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    12.91% {
+        -webkit-transform: matrix3d(1.052, 0, 0, 0, 0, 1.052, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1.052, 0, 0, 0, 0, 1.052, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    17.22% {
+        -webkit-transform: matrix3d(1.093, 0, 0, 0, 0, 1.093, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1.093, 0, 0, 0, 0, 1.093, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    28.33% {
+        -webkit-transform: matrix3d(1.021, 0, 0, 0, 0, 1.021, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1.021, 0, 0, 0, 0, 1.021, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    39.44% {
+        -webkit-transform: matrix3d(0.994, 0, 0, 0, 0, 0.994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(0.994, 0, 0, 0, 0, 0.994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    61.66% {
+        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    83.98% {
+        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    100% {
+        -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     }
 }
