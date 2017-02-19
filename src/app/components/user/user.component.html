@@ -1,0 +1,14 @@
+<div class="p-player-container">
+
+  <div *ngIf="user" class="p-user-emoji tri-right right-in" [class.p-user-emoji-hidden]="user?.emoji==''" [class.p-has-new-emoji]="user?.hasNewEmoji">
+    <i class="sprite p-sprite" [ngClass]="user?.emoji"></i>
+  </div>
+
+  <div class="p-user-name" [innerHtml]="user?.name"></div>
+
+  <div *ngIf="user?.isPlayer && !room?.reveal" class="p-user-points" [class.p-has-points]="user?.points" [class.p-has-new-points]="user?.hasNewPoints"></div>
+
+  <div *ngIf="user?.isPlayer && room?.reveal" class="p-user-points-revealed" [class.p-has-points]="user?.points" [class.p-has-new-points]="user?.hasNewPoints">
+    <span>{{user?.points}}</span></div>
+
+</div>

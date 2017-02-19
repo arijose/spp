@@ -50,6 +50,7 @@ export class RoomComponent implements OnInit {
   private pauseTimerSubscription: Subscription;
   private unpauseTimerSubscription: Subscription;
   private timerSubscription: Subscription;
+  private updateEmojiSubscription: Subscription;
 
   private url = 'http://localhost:3000';
   private socket: any;
@@ -100,6 +101,7 @@ export class RoomComponent implements OnInit {
     this.stopTimerSubscription = this.socketService.stopTimer().subscribe(() => this.onStopTimer());
     this.pauseTimerSubscription = this.socketService.pauseTimer().subscribe(() => this.onPauseTimer());
     this.unpauseTimerSubscription = this.socketService.unpauseTimer().subscribe(() => this.onUnpauseTimer());
+    this.updateEmojiSubscription = this.socketService.emojiUpdated().subscribe((res) => this.updateEmoji(res));
 
     this.timerSubscription = this.eventService.timerObserverable.subscribe(time => this.updateTime(time));
 
@@ -122,6 +124,7 @@ export class RoomComponent implements OnInit {
     this.stopTimerSubscription.unsubscribe();
     this.pauseTimerSubscription.unsubscribe();
     this.unpauseTimerSubscription.unsubscribe();
+    this.updateEmojiSubscription.unsubscribe();
   }
 
   onStartTimer(): void {
@@ -220,6 +223,20 @@ export class RoomComponent implements OnInit {
     }
   }
 
+  private updateEmoji(res: any): void {
+    let emojiUser: IUser = _.filter(this.room.users, (roomUser) => {
+      return roomUser.id === res.user.id;
+    })[0];
+
+    emojiUser.emoji = res.user.emoji;
+
+    emojiUser.hasNewEmoji = emojiUser.emoji !== '' ? true : false;
+
+    setTimeout(() => {
+      emojiUser.hasNewEmoji = false;
+    }, 5000);
+  }
+
   private updateTime(time: string): void {
     this.time = time;
   }
@@ -227,7 +244,7 @@ export class RoomComponent implements OnInit {
   private setupUserRoom(roomId: string): void {
     this.socket = io.connect(this.url);
     // Set user data
-    let user: IUser = JSON.parse(localStorage.getItem('poker-user'));
+    const user: IUser = JSON.parse(localStorage.getItem('poker-user'));
 
     // If room ids match, and there is a user object
     if (user && (user.roomId === this.roomId)) {
@@ -240,8 +257,6 @@ export class RoomComponent implements OnInit {
 
       // Go to room when user has joined
       this.socketService.roomJoined().subscribe(() => {
-        let user: IUser = this.userService.getUser();
-
         this.socketService.getRoom(this.roomId);
       });
 
