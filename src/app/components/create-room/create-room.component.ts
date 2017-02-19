@@ -17,7 +17,7 @@ import 'rxjs/add/operator/share';
  * Services
  *******************************/
 
-import { SocketService, UserService } from '../../services/index';
+import { SocketService, UserService, TimerService } from '../../services/index';
 
 /********************************
  * Classes, interfaces
@@ -49,6 +49,7 @@ export class CreateRoomComponent implements OnInit {
   constructor(private socketService: SocketService,
     private router: Router,
     private userService: UserService,
+    private timerService: TimerService,
     private elementRef: ElementRef) { }
 
   ngOnInit() {
@@ -70,6 +71,7 @@ export class CreateRoomComponent implements OnInit {
     // Clear any local variables to prevent re-entering a room exited from
     localStorage.removeItem('poker-user');
 
+    this.timerService.setTime(0);
     this.userService.deleteUser();
 
     if (this.userRoom.user.name && this.userRoom.room.name) {
