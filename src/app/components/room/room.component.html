@@ -68,7 +68,7 @@
   <div class="col-xs-6">
     <ul class="p-user-list">
       <li *ngFor="let user of users" class="p-user">
-        <app-user [user]="user" [room]="room" [canKick]="true" (kickedUser)="onKickedUser($event)"></app-user>
+        <app-user [user]="user" [room]="room" [canKick]="canKick" (kickedUser)="onKickedUser($event)"></app-user>
       </li>
       <li *ngIf="!users.length" class="p-user">Waiting on players...</li>
       <li class="p-user">

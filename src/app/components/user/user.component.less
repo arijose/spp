@@ -13,6 +13,7 @@
     .p-kick-btn {
         position: absolute;
         right: 0;
+        opacity: 0.5;
     }
     .p-user-points {
         display: none;
@@ -24,7 +25,7 @@
         right: -35px;
         &.p-has-points {
             display: inline-block;
-            animation: points-animation 1s linear both;
+            animation: bounce-animation 1s linear both;
         }
     }
     .p-user-points-revealed {
@@ -38,7 +39,7 @@
         text-align: center;
         font-size: 16px;
         padding: 5px;
-        animation: points-animation 1s linear both;
+        animation: bounce-animation 1s linear both;
     }
     .p-sprite {
         height: 32px;
@@ -59,11 +60,11 @@
         &.p-user-emoji-hidden {
             opacity: 0;
         }
-        &.p-has-emoji {
-            animation: points-animation 1s linear both;
+        &.p-sprite-animate {
+            animation: bounce-animation 1s linear both;
         }
         &.p-has-new-emoji {
-            animation: emoji-animation 5s linear both;
+            animation: fade-animation 5s linear both;
         }
     }
     .tri-right.right-in:after {
@@ -98,7 +99,7 @@
     }
 }
 
-@keyframes emoji-animation {
+@keyframes fade-animation {
     0% {
         opacity: 1;
     }
@@ -112,7 +113,7 @@
     }
 }
 
-@keyframes points-animation {
+@keyframes bounce-animation {
     0% {
         -webkit-transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
         transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);

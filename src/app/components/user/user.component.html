@@ -16,6 +16,5 @@
     <span>{{user?.points}}</span></div>
 
   <!-- Kick user button -->
-  {{user?.isPlayer}} {{user?.isOwner}}
-  <button *ngIf="user?.isOwner" class="btn btn-default p-kick-btn" (click)="onKickUser(user)"><i class="fa fa-times" aria-hidden="true"></i></button>
+  <button *ngIf="canKick" class="btn btn-default p-kick-btn" (click)="onKickUser(user)"><i class="fa fa-times" aria-hidden="true"></i></button>
 </div>
