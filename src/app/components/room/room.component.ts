@@ -55,6 +55,7 @@ export class RoomComponent implements OnInit {
   private url = 'http://localhost:3000';
   private socket: any;
   private timerActivated: boolean = false;
+  private emojiTimeout: any = null;
 
   public roomId: string;
   public userId: string;
@@ -225,17 +226,32 @@ export class RoomComponent implements OnInit {
   }
 
   private updateEmoji(res: any): void {
-    let emojiUser: IUser = _.filter(this.room.users, (roomUser) => {
+    // Reset timeout since this is an emoji update
+    clearTimeout(this.emojiTimeout);
+
+    this.emojiTimeout = null;
+
+    // Find emoji user
+    const user: IUser = _.filter(this.room.users, (roomUser) => {
       return roomUser.id === res.user.id;
     })[0];
 
-    emojiUser.emoji = res.user.emoji;
+    user.emoji = '';
+    user.hasNewEmoji = false;
 
-    emojiUser.hasNewEmoji = emojiUser.emoji !== '' ? true : false;
+    user.emoji = res.user.emoji;
 
-    setTimeout(() => {
-      emojiUser.hasNewEmoji = false;
-    }, 5000);
+    user.hasNewEmoji = user.emoji !== '' ? true : false;
+
+    // Set emoji timeout for animation and clean up
+    this.emojiTimeout = setTimeout(() => {
+      clearTimeout(this.emojiTimeout);
+
+      this.emojiTimeout = null;
+
+      user.hasNewEmoji = false;
+      user.emoji = '';
+    }, 10000);
   }
 
   private updateTime(time: string): void {

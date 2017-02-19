@@ -60,11 +60,8 @@
         &.p-user-emoji-hidden {
             opacity: 0;
         }
-        &.p-sprite-animate {
-            animation: bounce-animation 1s linear both;
-        }
         &.p-has-new-emoji {
-            animation: fade-animation 5s linear both;
+            animation: bounce-animation 1s linear both, fade-animation 10s linear both;
         }
     }
     .tri-right.right-in:after {
@@ -103,7 +100,7 @@
     0% {
         opacity: 1;
     }
-    80% {
+    90% {
         opacity: 0.8;
         transition: opacity;
     }
