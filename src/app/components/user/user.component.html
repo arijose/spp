@@ -1,14 +1,20 @@
 <div class="p-player-container">
 
+  <!-- Emoji -->
   <div *ngIf="user" class="p-user-emoji tri-right right-in" [class.p-user-emoji-hidden]="user?.emoji==''" [class.p-has-new-emoji]="user?.hasNewEmoji">
     <i class="sprite p-sprite" [ngClass]="user?.emoji"></i>
   </div>
 
+  <!-- Name -->
   <div class="p-user-name" [innerHtml]="user?.name"></div>
 
+  <!-- Points not revealed -->
   <div *ngIf="user?.isPlayer && !room?.reveal" class="p-user-points" [class.p-has-points]="user?.points" [class.p-has-new-points]="user?.hasNewPoints"></div>
 
+  <!-- Points revealed -->
   <div *ngIf="user?.isPlayer && room?.reveal" class="p-user-points-revealed" [class.p-has-points]="user?.points" [class.p-has-new-points]="user?.hasNewPoints">
     <span>{{user?.points}}</span></div>
 
+  <!-- Kick user button -->
+  <button *ngIf="canKick" class="btn btn-default p-kick-btn" (click)="onKickUser(user)"><i class="fa fa-times" aria-hidden="true"></i></button>
 </div>

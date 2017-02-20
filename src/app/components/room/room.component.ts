@@ -68,6 +68,7 @@ export class RoomComponent implements OnInit {
   public owner: IUser;
   public room: IRoom;
   public lockRoom: boolean;
+  public canKick: boolean;
   public freezeRoom: boolean;
   public fibonacci: Array<IFibonnaci> = [
     { points: '0' },
@@ -217,7 +218,7 @@ export class RoomComponent implements OnInit {
     this.socketService.kickUser(this.user);
   }
 
-  onKickUser(user: IUser): void {
+  onKickedUser(user: IUser): void {
     if (user.id !== this.userId) {
       this.socketService.kickUser(user);
     }
@@ -312,6 +313,8 @@ export class RoomComponent implements OnInit {
     this.lockRoom = room.isLocked;
     this.freezeRoom = room.isFrozen;
     this.reveal = room.reveal;
+
+    this.canKick = room.ownerId === this.user.id;
   }
 
   private updateRoom(res: any): void {
