@@ -1,10 +1,10 @@
-import { AngularCliStarterKitPage } from './app.po';
+import { PlanningPokerKitPage } from './app.po';
 
-describe('angular-cli-starter-kit App', function() {
-  let page: AngularCliStarterKitPage;
+describe('planning-poker-kit App', () => {
+  let page: PlanningPokerKitPage;
 
   beforeEach(() => {
-    page = new AngularCliStarterKitPage();
+    page = new PlanningPokerKitPage();
   });
 
   it('should display message saying app works', () => {

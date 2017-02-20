@@ -22,6 +22,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { AvatarComponent } from './components/shared/avatar/avatar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EmoteComponent } from './components/emote/emote.component';
+import { UserComponent } from './components/user/user.component';
 
 /********************************
  * Directives
@@ -39,7 +40,6 @@ import { SocketService } from './services/socket.service';
 import { UserService } from './services/user.service';
 import { EventService } from './services/event.service';
 import { TimerService } from './services/timer.service';
-
 
 /********************************
  * Third-party Components
@@ -65,7 +65,9 @@ import { TimerService } from './services/timer.service';
     // Directives
     DroppableDirective,
 
-    EmoteComponent
+    EmoteComponent,
+
+    UserComponent
 
   ],
   imports: [

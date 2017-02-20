@@ -131,20 +131,32 @@ export class SocketService {
     this.socket.emit('update-player', user)
   }
 
-  updateStartTimer(room): void {
+  updateStartTimer(room: IRoom): void {
     this.socket.emit('start-timer', room);
   }
 
-  updateStopTimer(room): void {
+  updateStopTimer(room: IRoom): void {
     this.socket.emit('stop-timer', room);
   }
 
-  updatePauseTimer(room): void {
+  updatePauseTimer(room: IRoom): void {
     this.socket.emit('pause-timer', room);
   }
 
-  updateUnpauseTimer(room): void {
+  updateUnpauseTimer(room: IRoom): void {
     this.socket.emit('unpause-timer', room);
+  }
+
+  updateEmoji(user: IUser): void {
+    this.socket.emit('emoji-updated', user);
+  }
+
+  emojiUpdated(): Observable<IUser> {
+    return new Observable(observer => {
+      return this.socket.on('update-emoji', (user) => {
+        observer.next(user);
+      });
+    })
   }
 
   pauseTimer(): Observable<any> {
