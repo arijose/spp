@@ -7,7 +7,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Observer } from 'rxjs/Observer';
 import { Subscription } from 'rxjs/Subscription';
+import { Popover } from "ng2-popover";
 import 'rxjs/add/operator/share';
+
 
 /********************************
  * Components

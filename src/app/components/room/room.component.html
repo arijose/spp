@@ -13,8 +13,13 @@
         </div>
 
         <!-- Sign out button -->
-        <button class="btn btn-default p-nav-btn" title="Sign out!" (click)="onSignout()">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        <button class="btn btn-default p-nav-btn" (click)="onSignout()"
+            popover="Sign out!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </button>
 
         <!-- Player-observer switch -->
         <button class="btn btn-default p-nav-btn" (click)="onUpdatePlayer()">
