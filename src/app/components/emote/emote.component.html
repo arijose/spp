@@ -1,5 +1,9 @@
 <div class="p-emoji-container dropdown">
-  <button id="p-emoji-button" class="btn btn-default p-nav-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <button id="p-emoji-button" class="btn btn-default p-nav-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+      popover="Add emoji!"
+      popoverPlacement="bottom"
+      [popoverAnimation]="true"
+      [popoverOnHover]="true">
       <div class="sprite-default"></div>
   </button>
   <table class="dropdown-menu p-emoji-table" aria-labelledby="p-emoji-button">
