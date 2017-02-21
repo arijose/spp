@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
+import { PopoverModule } from 'ng2-popover';
 
 /********************************
  * App Components
@@ -75,7 +76,7 @@ import { TimerService } from './services/timer.service';
     HttpModule,
     JsonpModule,
     RouterModule,
-
+    PopoverModule,
     // Routing config
     AppRoutes
 

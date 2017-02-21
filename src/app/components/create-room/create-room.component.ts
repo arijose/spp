@@ -72,6 +72,7 @@ export class CreateRoomComponent implements OnInit {
     localStorage.removeItem('poker-user');
 
     this.timerService.setTime(0);
+    this.timerService.pauseTimer();
     this.userService.deleteUser();
 
     if (this.userRoom.user.name && this.userRoom.room.name) {

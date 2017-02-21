@@ -8,49 +8,124 @@
           <div *ngIf="user?.isOwner" class="p-nav-title-editing-container">
             <input *ngIf="isEditingName" class="p-title-input" type="text" (blur)="onEditedName($event)" (keyup.enter)="onEditedName($event)"
               [value]="room?.name">
-              <button class="btn btn-default p-edit-button" (click)="onEditName()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="btn btn-default p-edit-button" (click)="onEditName()"
+                popover="Edit room name!"
+                popoverPlacement="bottom"
+                [popoverAnimation]="true"
+                [popoverOnHover]="true">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
           </div>
         </div>
 
         <!-- Sign out button -->
-        <button class="btn btn-default p-nav-btn" title="Sign out!" (click)="onSignout()">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        <button class="btn btn-default p-nav-btn" (click)="onSignout()"
+            popover="Logout!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </button>
 
         <!-- Player-observer switch -->
-        <button class="btn btn-default p-nav-btn" (click)="onUpdatePlayer()">
+        <button class="btn btn-default p-nav-btn" (click)="onUpdatePlayer()"
+            popover="Participate!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
           <i *ngIf="user?.isPlayer" title="Switch to observing" class="fa fa-user-o" aria-hidden="true"></i>
           <i *ngIf="!user?.isPlayer" title="Switch to playing" class="fa fa-user" aria-hidden="true"></i>          
         </button>
 
         <!-- Lock label -->
         <span *ngIf="!user?.isOwner" class="p-nav-control">
-                        <span *ngIf="lockRoom" title="Room is unlocked"><i class="fa fa-lock p-room-locked" aria-hidden="true"></i></span>
-        <span *ngIf="!lockRoom" title="Room is locked"><i class="fa fa-unlock-alt p-room-unlocked" aria-hidden="true"></i></span>
+          <span *ngIf="lockRoom"
+            popover="Room is unlocked!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-lock p-room-locked" aria-hidden="true"></i>
+          </span>
+          <span *ngIf="!lockRoom"
+            popover="Room is locked!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-unlock-alt p-room-unlocked" aria-hidden="true"></i>
+          </span>
         </span>
 
         <!-- Freeze label -->
         <span *ngIf="!user?.isOwner" class="p-nav-control">
-                    <span *ngIf="freezeRoom" title="Room is frozen"><i class="fa fa-snowflake-o p-room-freeze" aria-hidden="true"></i></span>
-        <span *ngIf="!freezeRoom" title="Room is unfrozen"><i class="fa fa-snowflake-o" aria-hidden="true"></i></span>
+          <span *ngIf="freezeRoom" title="Room is frozen"
+            popover="Room is frozen!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-snowflake-o p-room-freeze" aria-hidden="true"></i>
+          </span>
+          <span *ngIf="!freezeRoom" title="Room is unfrozen"
+            popover="Room is unfrozen!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+          </span>
         </span>
 
         <!-- Lock button -->
         <button class="btn btn-default p-nav-btn" *ngIf="user?.isOwner" (click)="onLockRoom()">
-                        <span *ngIf="lockRoom" title="Unlock room"><i class="fa fa-lock p-room-locked" aria-hidden="true"></i></span>
-                        <span *ngIf="!lockRoom" title="Lock room"><i class="fa fa-unlock-alt p-room-unlocked" aria-hidden="true"></i></span></button>
+          <span *ngIf="lockRoom"
+            popover="Unlock room!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-lock p-room-locked" aria-hidden="true"></i>
+          </span>
+          <span *ngIf="!lockRoom" title="Lock room"
+            popover="Lock room!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-unlock-alt p-room-unlocked" aria-hidden="true"></i>
+          </span>
+        </button>
 
         <!-- Freeze button -->
         <button class="btn btn-default p-nav-btn" *ngIf="user?.isOwner" (click)="onFreezeRoom()">
-                        <span *ngIf="freezeRoom" title="Unfreeze room"><i class="fa fa-snowflake-o p-room-freeze" aria-hidden="true"></i></span>
-                        <span *ngIf="!freezeRoom" title="Freeze room"><i class="fa fa-snowflake-o" aria-hidden="true"></i></span></button>
+          <span *ngIf="freezeRoom"
+            popover="Unfreeze room!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-snowflake-o p-room-freeze" aria-hidden="true"></i>
+          </span>
+          <span *ngIf="!freezeRoom"
+            popover="Freeze room!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+            <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+          </span>
+        </button>
 
         <!-- Reveal button -->
-        <button class="btn btn-default p-nav-btn" title="Reveal points" *ngIf="user?.isOwner" (click)="onRevealRoom()">
-                    <i class="fa fa-magic p-room-reveal"  [class.p-revealed]="room?.reveal" aria-hidden="true"></i></button>
+        <button class="btn btn-default p-nav-btn" *ngIf="user?.isOwner" (click)="onRevealRoom()"
+            popover="Reveal points!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+          <i class="fa fa-magic p-room-reveal"  [class.p-revealed]="room?.reveal" aria-hidden="true"></i>
+        </button>
 
         <!-- Reset button -->
-        <button class="btn btn-default p-nav-btn" title="Set/Reset session" *ngIf="user?.isOwner" (click)="onResetRoom()">
-                    <i class="fa fa-repeat p-room-reset"  aria-hidden="true"></i></button>
+        <button class="btn btn-default p-nav-btn" *ngIf="user?.isOwner" (click)="onResetRoom()"
+            popover="Set/Reset session!"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true">
+          <i class="fa fa-repeat p-room-reset"  aria-hidden="true"></i>
+        </button>
 
         <!-- Emoticons button -->
         <app-emote></app-emote>
