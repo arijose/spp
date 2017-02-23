@@ -137,8 +137,8 @@
 <div class="container p-gamearea">
   <div class="col-xs-6"></div>
   <div class="col-xs-6">
-    <!--<i _ngcontent-ilx-4="" class="sprite sprite-1f553 p-sprite "></i>-->
-    <span class="p-timer">{{time}}</span>
+      <span class="p-timer">{{time}}</span>
+      <div class="sprite sprite-1f553 p-sprite p-timer-sprite"></div>
   </div>
   <div class="col-xs-6">
     <ul class="p-user-list">
@@ -157,8 +157,4 @@
       <li *ngFor="let card of fibonacci" class="p-point-list-item wobble-vertical" [class.p-selected]="card?.selected" (click)="onSelectedFibonacci(card)">{{card.points}}</li>
     </ul>
   </div>
-
-  <!--<i class="sprite sprite-1f553 p-sprite " (click)="onEmojiSelected($event) "></i>-->
-  <!--<i class="sprite sprite-1f5e8 p-sprite " (click)="onEmojiSelected($event) "></i>
-<i class="sprite sprite-270b p-sprite " (click)="onEmojiSelected($event) "></i>-->
 </div>
