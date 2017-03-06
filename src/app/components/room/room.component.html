@@ -28,13 +28,19 @@
         </button>
 
         <!-- Player-observer switch -->
-        <button class="btn btn-default p-nav-btn" (click)="onUpdatePlayer()"
-            popover="Participate!"
+        <button class="btn btn-default p-nav-btn p-observing" (click)="onUpdatePlayer()">
+          <i *ngIf="!user?.isPlayer" 
+            popover="Switch to playing"
             popoverPlacement="bottom"
             [popoverAnimation]="true"
-            [popoverOnHover]="true">
-          <i *ngIf="user?.isPlayer" title="Switch to observing" class="fa fa-user-o" aria-hidden="true"></i>
-          <i *ngIf="!user?.isPlayer" title="Switch to playing" class="fa fa-user" aria-hidden="true"></i>          
+            [popoverOnHover]="true"            
+            class="fa fa-user-o" aria-hidden="true"></i>
+          <i *ngIf="user?.isPlayer" 
+            popover="Switch to observing"
+            popoverPlacement="bottom"
+            [popoverAnimation]="true"
+            [popoverOnHover]="true"            
+            class="fa fa-user" aria-hidden="true"></i>          
         </button>
 
         <!-- Lock label -->
