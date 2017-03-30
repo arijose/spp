@@ -1,35 +1,38 @@
 <!-- Create room -->
 <div class="container">
-  <div class="text-center spp-logo"><img src="../../../assets/SPPtitle.png"></div>
+  <div class="text-center spp-logo"><img src="../../../assets/SPPtitle.png" class="img-responsive"></div>
   <div class="panel panel-default p-create-room-panel">
-    <div class="panel-heading">
-      <h3 class="panel-title">Create Room</h3>
-    </div>
     <div class="panel-body">
       <form>
         <div class="row">
-          <div class="col-sm-12">
-            <div class="input-group">
-              <input type="text" class="form-control p-create-room-input" [(ngModel)]="userRoom.user.name" name="userName" placeholder="Your name"
-                (keyup.enter)="userRoom.user.name && userRoom.room.name && createRoom()" required>
+          <div class="col-sm-6">
+            <div class="col-sm-12">
+              <h3 class="panel-title">Create Room</h3>
+              <div class="input-group">
+                <input type="text" class="form-control p-create-room-input" [(ngModel)]="userRoom.user.name" name="userName" placeholder="Your name"
+                  (keyup.enter)="userRoom.user.name && userRoom.room.name && createRoom()" required>
+              </div>
+
             </div>
-
-          </div>
-          <div class="col-sm-12">
-            <div class="input-group">
-              <input type="text" class="form-control p-create-room-input" [(ngModel)]="userRoom.room.name" name="roomName" placeholder="Room name"
-                (keyup.enter)="userRoom.user.name && userRoom.room.name && createRoom()" required>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="text" class="form-control p-create-room-input" [(ngModel)]="userRoom.room.name" name="roomName" placeholder="Room name"
+                  (keyup.enter)="userRoom.user.name && userRoom.room.name && createRoom()" required>
+              </div>
             </div>
-          </div>
-
-          <!--<div class="col-sm-12">
-                        <avatar></avatar>
-                    </div>-->
-
-          <div class="col-sm-12">
-            <button type="button" (click)="createRoom()" class="btn btn-default p-create-room-btn" [disabled]="!userRoom.user.name || !userRoom.room.name">
+            <div class="col-sm-12">
+              <button type="button" (click)="createRoom()" class="btn btn-default p-create-room-btn" [disabled]="!userRoom.user.name || !userRoom.room.name">
                     <span>Start Room</span>
                 </button>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="spp-hero-container">
+              <i class="sprite sprite-body"></i>
+              <i class="sprite sprite-eyes_closed"></i>
+              <i class="sprite sprite-eyes_open"></i>
+            </div>
           </div>
         </div>
       </form>
