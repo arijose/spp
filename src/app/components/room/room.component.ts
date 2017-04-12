@@ -171,11 +171,10 @@ export class RoomComponent implements OnInit {
     })
 
     card.selected = true;
+    
+    // Set points 
+    this.socketService.setPoints(this.user);
 
-    // Set points if user is in player mode
-    if (this.user.isPlayer) {
-      this.socketService.setPoints(this.user);
-    }
   }
 
   onLockRoom(): void {
