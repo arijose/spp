@@ -141,7 +141,11 @@
   </nav>
 </div>
 <div class="container p-gamearea">
-  <div class="col-xs-6"></div>
+  <div class="col-xs-6 p-story">
+    <div class="col-xs-2 text-right">Story:</div> 
+    <input *ngIf="user.isOwner" [(ngModel)]="story" (keyup)="onSetStory()" name="story" class="col-xs-6" />
+    <div *ngIf="!user.isOwner" class="col-xs-12">{{ story }}</div>
+  </div>
   <div class="col-xs-6">
       <span class="p-timer">{{time}}</span>
       <div class="sprite sprite-1f553 p-sprite p-timer-sprite"></div>

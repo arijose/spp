@@ -143,6 +143,10 @@ io.on('connection', (socket) => {
     socket.on('emoji-updated', (user) => {
         updateEmoji(user);
     });
+
+    socket.on('story-updated', (story) => {
+        updateStory(story);
+    });    
 });
 
 function joinRoom(id) {
@@ -312,6 +316,17 @@ function updateEmoji(emojiUser) {
         }
 
         io.in(room.id).emit('update-emoji', { user: roomUser });
+    }
+}
+
+function updateStory(story) {
+
+    let room = findRoom(story.id);
+    
+    if (room) {
+
+        io.in(room.id).emit('update-story', story.story);
+        
     }
 }
 

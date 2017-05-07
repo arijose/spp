@@ -151,10 +151,22 @@ export class SocketService {
     this.socket.emit('emoji-updated', user);
   }
 
+  updateStory(room: IRoom): void {
+    this.socket.emit('story-updated', room);
+  }
+
   emojiUpdated(): Observable<IUser> {
     return new Observable(observer => {
       return this.socket.on('update-emoji', (user) => {
         observer.next(user);
+      });
+    })
+  }
+
+  storyUpdated(): Observable<string> {
+    return new Observable(observer => {
+      return this.socket.on('update-story', (story) => {
+        observer.next(story);
       });
     })
   }

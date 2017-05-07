@@ -53,6 +53,7 @@ export class RoomComponent implements OnInit {
   private unpauseTimerSubscription: Subscription;
   private timerSubscription: Subscription;
   private updateEmojiSubscription: Subscription;
+  private updateStorySubscription: Subscription;
 
   private url = 'http://localhost:3000';
   private socket: any;
@@ -65,6 +66,7 @@ export class RoomComponent implements OnInit {
   public isEditingName: boolean = false;
   public reveal: boolean = false;
   public time: string = '00:00:00';
+  public story: string;
 
   public user: IUser;
   public users: Array<IUser> = [];
@@ -106,6 +108,7 @@ export class RoomComponent implements OnInit {
     this.pauseTimerSubscription = this.socketService.pauseTimer().subscribe(() => this.onPauseTimer());
     this.unpauseTimerSubscription = this.socketService.unpauseTimer().subscribe(() => this.onUnpauseTimer());
     this.updateEmojiSubscription = this.socketService.emojiUpdated().subscribe((res) => this.updateEmoji(res));
+    this.updateStorySubscription = this.socketService.storyUpdated().subscribe((res) => this.updateStory(res));
 
     this.timerSubscription = this.eventService.timerObserverable.subscribe(time => this.updateTime(time));
 
@@ -129,6 +132,7 @@ export class RoomComponent implements OnInit {
     this.pauseTimerSubscription.unsubscribe();
     this.unpauseTimerSubscription.unsubscribe();
     this.updateEmojiSubscription.unsubscribe();
+    this.updateStorySubscription.unsubscribe();
   }
 
   onStartTimer(): void {
@@ -160,6 +164,11 @@ export class RoomComponent implements OnInit {
     this.socketService.updateStartTimer(this.room);
 
     this.socketService.resetPoints(this.room);
+  }
+
+  onSetStory(): void {
+    this.room.story = this.story;
+    this.socketService.updateStory(this.room);
   }
 
   onSelectedFibonacci(card: IFibonnaci): void {
@@ -225,7 +234,7 @@ export class RoomComponent implements OnInit {
       this.socketService.kickUser(user);
     }
   }
-
+  
   private updateEmoji(res: any): void {
     // Reset timeout since this is an emoji update
     clearTimeout(this.emojiTimeout);
@@ -324,6 +333,10 @@ export class RoomComponent implements OnInit {
       // Redirect to create room
       this.router.navigate(['/']);
     }
+  }
+
+  private updateStory(story: string): void {
+    this.story = story;
   }
 
   private updateRoomSettings(room: IRoom): void {

@@ -14,4 +14,5 @@ export interface IRoom {
     isFrozen?: boolean;
     reveal?: boolean;
     time?: number;
+    story?: string;
 }
