@@ -14,7 +14,6 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="col-sm-12">
-              <h3 class="panel-title">Create Room</h3>
               <div class="input-group">
                 <input type="text" class="form-control p-create-room-input" [(ngModel)]="userRoom.user.name" name="userName" placeholder="Your name"
                   (keyup.enter)="userRoom.user.name && userRoom.room.name && createRoom()" required>
@@ -29,7 +28,7 @@
             </div>
             <div class="col-sm-12">
               <button type="button" (click)="createRoom()" class="btn btn-default p-create-room-btn" [disabled]="!userRoom.user.name || !userRoom.room.name">
-                    <span>Start Room</span>
+                    <span>Create Room</span>
                 </button>
             </div>
 
