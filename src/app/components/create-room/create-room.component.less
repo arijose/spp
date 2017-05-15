@@ -1,15 +1,23 @@
 .p-create-room-panel {
-    width: 400px;
+    width: 480px;
     position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: none;
     background: none;
-    h3 {
-        font-family: 'Fjalla One', sans-serif;
-        font-size: 24px;
+    .spp-room-super-title {
+        font-family: 'Adventure';
+        font-size: 72pt;
         color: #ff0000;
+        text-shadow: 1px 1px 1px #000;
+    }
+    .spp-room-poker-title {
+        font-family: 'SpaceComics';
+        font-size: 32pt;
+        text-transform: uppercase;
+        color: #038cb1;
+        text-shadow: 1px 1px 1px #000;
     }
     .input-group {
         width: 100%;
@@ -18,8 +26,18 @@
         margin-top: 10px;
     }
     .p-create-room-btn {
+        background: none;
         margin-top: 10px;
-        width: 100%;
+        font-family: 'BadApple';
+        font-size: 24px;
+        color: #000;
+        border: none;
+        background-image: url(../../../assets/room_button.png);
+        opacity: 1;
+        background-size: cover;
+        width: 300px;
+        height: 181px;
+        animation: button-pulse 2s infinite;
     }
 }
 
@@ -61,5 +79,17 @@
 @keyframes blink-animation {
     to {
         visibility: hidden;
+    }
+}
+
+@keyframes button-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }
