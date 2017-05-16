@@ -25,7 +25,7 @@ import { SocketService, UserService, EventService, TimerService } from '../../se
  * Classes, interfaces
  *******************************/
 
-import { IUser, IRoom, IUserRoom, IFibonnaci } from '../../interfaces/index';
+import { IUser, IRoom, IUserRoom, IFibonnaci, IStoryHistoryItem } from '../../interfaces/index';
 
 /********************************
  * Third party
@@ -67,6 +67,7 @@ export class RoomComponent implements OnInit {
   public reveal: boolean = false;
   public time: string = '00:00:00';
   public story: string;
+  public storyHistory: IStoryHistoryItem[] = [];
 
   public user: IUser;
   public users: Array<IUser> = [];
@@ -133,6 +134,28 @@ export class RoomComponent implements OnInit {
     this.unpauseTimerSubscription.unsubscribe();
     this.updateEmojiSubscription.unsubscribe();
     this.updateStorySubscription.unsubscribe();
+  }
+
+  public get pointAverage(): number {
+
+    let sum: number = 0;
+    let count: number = this.users.length;
+
+    // this.users.map(i => {
+    //   sum += Number(i.points);
+    //   return i;
+    // });
+    console.log(count);
+    for(let i = 0; i < count; i++) {
+      sum += Number(this.users[i].points);
+    }
+    console.log(sum);
+    if(count) {
+      return sum/count;
+    } else {
+      return 0;
+    }
+    
   }
 
   onStartTimer(): void {
@@ -235,6 +258,16 @@ export class RoomComponent implements OnInit {
     }
   }
   
+  public addStory(): void {
+
+    this.storyHistory.push({
+      story: this.story,
+      points: this.pointAverage
+    });
+
+    this.story = '';
+  }
+
   private updateEmoji(res: any): void {
     // Reset timeout since this is an emoji update
     clearTimeout(this.emojiTimeout);

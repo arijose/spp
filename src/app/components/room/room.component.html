@@ -143,7 +143,9 @@
 <div class="container p-gamearea">
   <div class="col-xs-6 p-story">
     <div class="col-xs-2 text-right">Story:</div> 
-    <input *ngIf="user.isOwner" [(ngModel)]="story" (keyup)="onSetStory()" name="story" class="col-xs-6" />
+    <div class="col-xs-8" *ngIf="user.isOwner">
+      <input [(ngModel)]="story" (keyup)="onSetStory()" name="story" class="pull-left" /> <i class="glyphicon glyphicon-plus-sign pull-left" (click)="addStory()"></i>
+    </div>
     <div *ngIf="!user.isOwner" class="col-xs-12">{{ story }}</div>
   </div>
   <div class="col-xs-6">
@@ -166,5 +168,13 @@
     <ul class="p-point-list">
       <li *ngFor="let card of fibonacci" class="p-point-list-item wobble-vertical" [class.p-selected]="card?.selected" (click)="onSelectedFibonacci(card)">{{card.points}}</li>
     </ul>
+    <div class="p-point-average text-center"><span>Average: {{ pointAverage }}</span></div>
+  </div>
+  <div class="p-story-history" *ngIf="storyHistory.length">
+    <div class="p-story-history-title"><strong>Story History</strong></div>
+    <div class="p-story-history-item" *ngFor="let story of storyHistory">
+      <div class="col-xs-3">{{ story.story }}</div>
+      <div class="col-xs-9">{{ story.points }}</div>
+    </div>
   </div>
 </div>
